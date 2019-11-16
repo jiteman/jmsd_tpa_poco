@@ -14,6 +14,7 @@ set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/tpa_poco_t
 set( ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR
 	${JMSD_PLATFORM_SOURCES}
 	${tpa_poco_cppunit_DEPENDENCY_DIRS}
+	${tpc_poco_foundation_TEST_SOURCE_DIRS}
 	${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 #	${JMSD_COMPONENT_SOURCE_ROOT_PATH} )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR )
@@ -21,7 +22,30 @@ include_directories( ${${PROJECT_NAME}_DEPENDENCY_DIRS_VAR} ${JMSD_THIS_PROJECT_
 
 
 ## this project headers and sources enumeration section
-file( GLOB_RECURSE header_and_source_files ${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.h* ${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.c* )
+foreach( directory ${tpc_poco_foundation_TEST_SOURCE_DIRS} )
+	list( APPEND test_header_and_source_files ${directory}/*.h* )
+	list( APPEND test_header_and_source_files ${directory}/*.c* )
+endforeach()
+
+file( GLOB_RECURSE header_and_source_files
+	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.h*
+	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.c*
+	${test_header_and_source_files} )
+
+set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
+	"TestApp"
+	"Driver"
+	"CppUnitTestPlugIn.cpp" )
+
+#if( UNIX )
+#elseif( WIN32 )
+#	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
+#		"NamedTuplesTest"
+#		"TuplesTest" )
+#endif()
+
+JMSD_REMOVE_FILES_FROM_THE_LIST( header_and_source_files JMSD_THIS_PROJECT_FILES_TO_REMOVE )
+
 add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )
 
 

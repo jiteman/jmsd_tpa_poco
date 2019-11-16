@@ -2,10 +2,10 @@
 
 #include "jmsd/tpa/poco/tpa_poco_cppunit_main.h"
 
-#include "CppUnit/TestSuite.h"
+#include "FoundationTestSuite.h"
+#include "CppUnit/Test.h"
 
 #include <vector>
-#include <memory>
 
 
 namespace jmsd {
@@ -14,7 +14,11 @@ namespace poco {
 
 
 int tpa_poco_test_main( int const argc, char const *const argv[] ) {
-	return tpa_poco_cppunit_main( argc, argv, ::std::vector< ::std::shared_ptr< ::CppUnit::TestSuite > >() );
+	::std::vector< ::CppUnit::Test * > test_suite_list = {
+		FoundationTestSuite::suite()
+	};
+
+	return tpa_poco_cppunit_main( argc, argv, test_suite_list );
 }
 
 
