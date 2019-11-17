@@ -14,7 +14,15 @@ set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/tpa_poco_t
 set( ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR
 	${JMSD_PLATFORM_SOURCES}
 	${tpa_poco_cppunit_DEPENDENCY_DIRS}
+	${tpc_poco_json_DEPENDENCY_DIRS}
+	${tpc_poco_xml_DEPENDENCY_DIRS}
+	${tpc_poco_util_DEPENDENCY_DIRS}
+	${tpc_poco_zip_DEPENDENCY_DIRS}
 	${tpc_poco_foundation_TEST_SOURCE_DIRS}
+	${tpc_poco_json_TEST_SOURCE_DIRS}
+	${tpc_poco_xml_TEST_SOURCE_DIRS}
+	${tpc_poco_util_TEST_SOURCE_DIRS}
+	${tpc_poco_zip_TEST_SOURCE_DIRS}
 	${JMSD_THIS_PROJECT_SOURCE_ROOT} )
 #	${JMSD_COMPONENT_SOURCE_ROOT_PATH} )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR )
@@ -27,6 +35,26 @@ foreach( directory ${tpc_poco_foundation_TEST_SOURCE_DIRS} )
 	list( APPEND test_header_and_source_files ${directory}/*.c* )
 endforeach()
 
+foreach( directory ${tpc_poco_json_TEST_SOURCE_DIRS} )
+	list( APPEND test_header_and_source_files ${directory}/*.h* )
+	list( APPEND test_header_and_source_files ${directory}/*.c* )
+endforeach()
+
+foreach( directory ${tpc_poco_xml_TEST_SOURCE_DIRS} )
+	list( APPEND test_header_and_source_files ${directory}/*.h* )
+	list( APPEND test_header_and_source_files ${directory}/*.c* )
+endforeach()
+
+foreach( directory ${tpc_poco_util_TEST_SOURCE_DIRS} )
+	list( APPEND test_header_and_source_files ${directory}/*.h* )
+	list( APPEND test_header_and_source_files ${directory}/*.c* )
+endforeach()
+
+foreach( directory ${tpc_poco_zip_TEST_SOURCE_DIRS} )
+	list( APPEND test_header_and_source_files ${directory}/*.h* )
+	list( APPEND test_header_and_source_files ${directory}/*.c* )
+endforeach()
+
 file( GLOB_RECURSE header_and_source_files
 	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.h*
 	${JMSD_THIS_PROJECT_SOURCE_ROOT}/*.c*
@@ -35,7 +63,10 @@ file( GLOB_RECURSE header_and_source_files
 set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
 	"TestApp"
 	"Driver"
-	"CppUnitTestPlugIn.cpp" )
+	"CppUnitTestPlugIn"
+	"WindowsTestSuite"
+	"WinConfigurationTest"
+	"WinRegistryTest" )
 
 #if( UNIX )
 #elseif( WIN32 )
@@ -52,11 +83,19 @@ add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )
 ## definition section
 set( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR
 	${tpa_poco_cppunit_LINK_DEFINITIONS}
+	${tpc_poco_json_LINK_DEFINITIONS}
+	${tpc_poco_xml_LINK_DEFINITIONS}
+	${tpc_poco_util_LINK_DEFINITIONS}
+	${tpc_poco_zip_LINK_DEFINITIONS}
 	-DJMSD_TPA_POCO_TEST_TEMPLATE_SHARED_INTERFACE_INTERNAL )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 set( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR
-	${tpa_poco_cppunit_LINK_DEFINITIONS} )
+	${tpa_poco_cppunit_LINK_DEFINITIONS}
+	${tpc_poco_json_LINK_DEFINITIONS}
+	${tpc_poco_xml_LINK_DEFINITIONS}
+	${tpc_poco_util_LINK_DEFINITIONS}
+	${tpc_poco_zip_LINK_DEFINITIONS} )
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR )
 add_definitions( "${${PROJECT_NAME}_BUILD_DEFINITIONS_VAR}" )
@@ -71,8 +110,20 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION 0.1 )
 ## project target section
 set( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR
 	${tpa_poco_cppunit_DEPENDENCY_LIBS}
-	tpa_poco_cppunit )
+	${tpc_poco_json_DEPENDENCY_LIBS}
+	${tpc_poco_xml_DEPENDENCY_LIBS}
+	${tpc_poco_util_DEPENDENCY_LIBS}
+	${tpc_poco_zip_DEPENDENCY_LIBS}
+	tpa_poco_cppunit
+	tpc_poco_json
+	tpc_poco_xml
+	tpc_poco_util
+	tpc_poco_zip )
+message( STATUS "[JMSD] before" )
+JMSD_ECHO_DIRECTORY_LIST( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR )
 list( REMOVE_DUPLICATES ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR )
+message( STATUS "[JMSD] after" )
+JMSD_ECHO_DIRECTORY_LIST( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR )
 target_link_libraries( ${PROJECT_NAME} ${${PROJECT_NAME}_DEPENDENCY_LIBS_VAR} )
 
 

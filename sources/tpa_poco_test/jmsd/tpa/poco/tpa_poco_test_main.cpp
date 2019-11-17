@@ -3,6 +3,10 @@
 #include "jmsd/tpa/poco/tpa_poco_cppunit_main.h"
 
 #include "FoundationTestSuite.h"
+#include "JSONTestSuite.h"
+#include "XMLTestSuite.h"
+#include "UtilTestSuite.h"
+#include "ZipTestSuite.h"
 #include "CppUnit/Test.h"
 
 #include <vector>
@@ -15,7 +19,11 @@ namespace poco {
 
 int tpa_poco_test_main( int const argc, char const *const argv[] ) {
 	::std::vector< ::CppUnit::Test * > test_suite_list = {
-		FoundationTestSuite::suite()
+//		FoundationTestSuite::suite(),
+		JSONTestSuite::suite(),
+		XMLTestSuite::suite(),
+		UtilTestSuite::suite(),
+		ZipTestSuite::suite()
 	};
 
 	return tpa_poco_cppunit_main( argc, argv, test_suite_list );
