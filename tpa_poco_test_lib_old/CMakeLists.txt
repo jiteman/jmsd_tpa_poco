@@ -13,7 +13,7 @@ set( JMSD_THIS_PROJECT_SOURCE_ROOT ${JMSD_COMPONENT_SOURCE_ROOT_PATH}/tpa_poco_t
 ## include dependencies
 set( ${PROJECT_NAME}_DEPENDENCY_DIRS_VAR
 	${JMSD_PLATFORM_SOURCES}
-	${tpa_poco_cppunit_adapter_DEPENDENCY_DIRS}
+	${tpa_poco_cppunit_DEPENDENCY_DIRS}
 	${tpc_poco_json_DEPENDENCY_DIRS}
 	${tpc_poco_xml_DEPENDENCY_DIRS}
 	${tpc_poco_util_DEPENDENCY_DIRS}
@@ -82,7 +82,7 @@ add_library( ${PROJECT_NAME} SHARED ${header_and_source_files} )
 
 ## definition section
 set( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR
-	${tpa_poco_cppunit_adapter_LINK_DEFINITIONS}
+	${tpa_poco_cppunit_LINK_DEFINITIONS}
 	${tpc_poco_json_LINK_DEFINITIONS}
 	${tpc_poco_xml_LINK_DEFINITIONS}
 	${tpc_poco_util_LINK_DEFINITIONS}
@@ -91,7 +91,7 @@ set( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR
 JMSD_LIST_TO_STRING( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 JMSD_STRING_REMOVE_DUPLICATES( ${PROJECT_NAME}_BUILD_DEFINITIONS_VAR )
 set( ${PROJECT_NAME}_LINK_DEFINITIONS_VAR
-	${tpa_poco_cppunit_adapter_LINK_DEFINITIONS}
+	${tpa_poco_cppunit_LINK_DEFINITIONS}
 	${tpc_poco_json_LINK_DEFINITIONS}
 	${tpc_poco_xml_LINK_DEFINITIONS}
 	${tpc_poco_util_LINK_DEFINITIONS}
@@ -109,12 +109,12 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES SOVERSION 0.1 )
 
 ## project target section
 set( ${PROJECT_NAME}_DEPENDENCY_LIBS_VAR
-	${tpa_poco_cppunit_adapter_DEPENDENCY_LIBS}
+	${tpa_poco_cppunit_DEPENDENCY_LIBS}
 	${tpc_poco_json_DEPENDENCY_LIBS}
 	${tpc_poco_xml_DEPENDENCY_LIBS}
 	${tpc_poco_util_DEPENDENCY_LIBS}
 	${tpc_poco_zip_DEPENDENCY_LIBS}
-	tpa_poco_cppunit_adapter
+	tpa_poco_cppunit
 	tpc_poco_json
 	tpc_poco_xml
 	tpc_poco_util
