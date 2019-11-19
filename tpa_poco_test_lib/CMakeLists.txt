@@ -63,17 +63,18 @@ file( GLOB_RECURSE header_and_source_files
 set( JMSD_THIS_PROJECT_FILES_TO_REMOVE
 	"TestApp"
 	"Driver"
-	"CppUnitTestPlugIn"
-	"WindowsTestSuite"
-	"WinConfigurationTest"
-	"WinRegistryTest" )
+	"CppUnitTestPlugIn" )
 
-#if( UNIX )
-#elseif( WIN32 )
-#	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
-#		"NamedTuplesTest"
-#		"TuplesTest" )
-#endif()
+if( UNIX )
+	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
+		"WindowsTestSuite"
+		"WinConfigurationTest"
+		"WinRegistryTest" )
+elseif( WIN32 )
+	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
+		"NamedTuplesTest"
+		"TuplesTest" )
+endif()
 
 JMSD_REMOVE_FILES_FROM_THE_LIST( header_and_source_files JMSD_THIS_PROJECT_FILES_TO_REMOVE )
 

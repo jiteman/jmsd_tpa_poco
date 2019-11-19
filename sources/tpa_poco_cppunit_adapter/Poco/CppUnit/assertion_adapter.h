@@ -17,6 +17,9 @@
 #define failmsg( message ) \
 	CPPUNIT_FAIL( ( message ) )
 
+#define warnmsg( message ) \
+	CPPUNIT_FAIL( ( message ) )
+
 #define assertNullPtr( pointer ) \
 	CPPUNIT_ASSERT( ( pointer ) == nullptr )
 
