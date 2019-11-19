@@ -47,3 +47,8 @@
 
 #define assertEqualTyped( type, expected, actual ) \
 	CPPUNIT_ASSERT_EQUAL( type( ( expected ) ), type( ( actual ) ) )
+
+#undef assert
+#define assert( condition ) \
+	assertTrue( ( condition ) )
+

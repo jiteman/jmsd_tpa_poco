@@ -41,7 +41,3 @@ int tpa_poco_cppunit_main(
 } // namespace poco
 } // namespace tpa
 } // namespace jmsd
-
-
-
-

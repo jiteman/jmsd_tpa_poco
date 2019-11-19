@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "pcu_adapter.h"
+#include "tpa_poco_cppunit_adapter.h"
 
 
 namespace poco {
