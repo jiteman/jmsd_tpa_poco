@@ -12,6 +12,7 @@ if ( WIN32 )
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4244" ) # '': conversion from '' to '', possible loss of data
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4245" ) # '': conversion from '' to '', signed/unsigned mismatch
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4266" ) # '': no override available for virtual member function from base ''; function is hidden
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4275" ) # non dll-interface class '' used as base for dll-interface class ''
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4287" ) # '': unsigned/negative constant mismatch
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4310" ) # cast truncates constant value
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "/wd4365" ) # '': conversion from '' to '', signed/unsigned mismatch
