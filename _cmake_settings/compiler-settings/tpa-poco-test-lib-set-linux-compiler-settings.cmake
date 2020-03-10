@@ -13,6 +13,8 @@ if ( UNIX )
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-implicit-fallthrough" ) # this statement may fall through
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-cast-qual" ) # cast from type '' to type '' casts away qualifier
 	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-unused-but-set-variable" ) # variable ‘’ set but not used
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-deprecated-copy" ) #
+	list( APPEND ${PROJECT_NAME}_CXX_FLAGS "-Wno-inline" ) # inlining failed in call to '' call is unlikely and code size would grow
 
 	string( REPLACE ";" " " ${PROJECT_NAME}_CXX_FLAGS_STR "${${PROJECT_NAME}_CXX_FLAGS}" )
 

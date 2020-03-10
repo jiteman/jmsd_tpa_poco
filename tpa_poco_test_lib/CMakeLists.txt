@@ -69,7 +69,8 @@ if( UNIX )
 	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
 		"WindowsTestSuite"
 		"WinConfigurationTest"
-		"WinRegistryTest" )
+		"WinRegistryTest"
+		"WinServiceTest" )
 elseif( WIN32 )
 	list( APPEND JMSD_THIS_PROJECT_FILES_TO_REMOVE
 		"NamedTuplesTest"
